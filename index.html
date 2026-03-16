@@ -4,247 +4,375 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isapeli3D - Professioneller 3D-Druck Service</title>
-    <meta name="description" content="Professioneller 3D-Druck Service für Prototypen, Ersatzteile und individuelle Designs.">
+    <meta name="description" content="Professioneller 3D-Druck Service für Prototypen, Ersatzteile, Deko und individuelle Designs. Lokal aus Troisdorf.">
     <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1F2937; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;color:#1F2937;background:#fff}
+        img{max-width:100%;display:block}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
         /* === HEADER === */
-        header { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 72px; }
-        .logo { font-size: 1.4rem; font-weight: 700; color: #2563EB; text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-        .logo img { height: 44px; width: auto; }
-
-        /* Desktop Nav */
-        nav { display: flex; align-items: center; gap: 32px; }
-        nav ul { display: flex; list-style: none; gap: 28px; }
-        nav a { text-decoration: none; color: #4B5563; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-        nav a:hover { color: #2563EB; }
-
-        /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: #374151; margin: 6px 0; border-radius: 2px; transition: 0.3s; }
-
-        /* Mobile Nav Overlay */
-        .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: white; z-index: 999; padding: 24px; flex-direction: column; gap: 0; }
-        .mobile-nav.active { display: flex; }
-        .mobile-nav a { display: block; padding: 16px 0; font-size: 1.15rem; font-weight: 600; color: #1F2937; text-decoration: none; border-bottom: 1px solid #F3F4F6; }
-        .mobile-nav .cta-mobile { margin-top: 24px; text-align: center; }
-
-        .cta-button { background: #2563EB; color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; white-space: nowrap; }
-        .cta-button:hover { background: #1d4ed8; }
+        header{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);position:sticky;top:0;z-index:1000}
+        .nav-wrap{display:flex;justify-content:space-between;align-items:center;height:76px}
+        .logo-link{display:flex;align-items:center;gap:12px;text-decoration:none}
+        .logo-link img{height:50px;width:auto}
+        nav{display:flex;align-items:center;gap:36px}
+        nav ul{display:flex;list-style:none;gap:8px}
+        nav a{text-decoration:none;color:#4B5563;font-weight:500;font-size:.93rem;padding:8px 16px;border-radius:8px;transition:all .2s}
+        nav a:hover{color:#1a56db;background:#EFF6FF}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:10px;font-weight:600;font-size:.93rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+        .btn-primary{background:#1a56db;color:#fff}.btn-primary:hover{background:#1444b3;transform:translateY(-1px);box-shadow:0 4px 16px rgba(26,86,219,.35)}
+        .btn-outline{background:transparent;color:#1a56db;border:2px solid #1a56db}.btn-outline:hover{background:#1a56db;color:#fff}
+        .btn-white{background:#fff;color:#1a56db}.btn-white:hover{background:#F0F4FF;transform:translateY(-1px)}
+        .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .hamburger span{display:block;width:22px;height:2px;background:#374151;margin:5px 0;border-radius:2px;transition:.3s}
+        .mobile-nav{display:none;position:fixed;inset:0;top:76px;background:#fff;z-index:999;padding:24px;flex-direction:column;overflow-y:auto}
+        .mobile-nav.active{display:flex}
+        .mobile-nav a{display:block;padding:16px 0;font-size:1.1rem;font-weight:600;color:#1F2937;text-decoration:none;border-bottom:1px solid #F3F4F6}
+        .mobile-nav .mob-cta{margin-top:24px}
 
         /* === HERO === */
-        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 0; text-align: center; }
-        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
-        .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-        .hero .cta-hero { background: white; color: #2563EB; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; }
-        .hero .cta-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        .hero{position:relative;background:#0a1628;overflow:hidden;padding:0}
+        .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a1628 0%,#1a2744 50%,#1a3a5c 100%)}
+        .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:580px;padding:60px 0}
+        .hero-text{color:#fff;padding-right:40px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,219,.2);border:1px solid rgba(26,86,219,.3);color:#93b4f5;padding:6px 16px;border-radius:50px;font-size:.82rem;font-weight:600;margin-bottom:24px}
+        .hero-badge svg{width:14px;height:14px}
+        .hero-text h1{font-size:3rem;font-weight:900;line-height:1.15;margin-bottom:20px;letter-spacing:-.02em}
+        .hero-text h1 span{color:#60a5fa}
+        .hero-text p{font-size:1.1rem;color:#94a3b8;margin-bottom:32px;max-width:480px;line-height:1.7}
+        .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+        .hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.1)}
+        .hero-stat .num{font-size:1.6rem;font-weight:800;color:#60a5fa}
+        .hero-stat .label{font-size:.8rem;color:#64748b;margin-top:2px}
+        .hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+        .hero-img-wrap{position:relative;width:100%;max-width:480px;aspect-ratio:1;border-radius:24px;overflow:hidden;box-shadow:0 32px 64px rgba(0,0,0,.4)}
+        .hero-img-wrap img{width:100%;height:100%;object-fit:cover}
+        .hero-img-badge{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:12px 20px;border-radius:12px;display:flex;align-items:center;gap:10px}
+        .hero-img-badge .dot{width:8px;height:8px;background:#10b981;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+        /* === TRUST BAR === */
+        .trust{padding:40px 0;background:#fff;border-bottom:1px solid #F3F4F6}
+        .trust-inner{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:10px;color:#6B7280;font-size:.9rem;font-weight:500}
+        .trust-item svg{width:20px;height:20px;color:#1a56db}
+
+        /* === SECTION COMMON === */
+        .section{padding:96px 0}
+        .section-label{display:inline-flex;align-items:center;gap:8px;color:#1a56db;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+        .section-label svg{width:16px;height:16px}
+        .section-title{font-size:2.4rem;font-weight:900;color:#0f172a;margin-bottom:12px;letter-spacing:-.02em}
+        .section-desc{color:#6B7280;font-size:1.05rem;max-width:560px;line-height:1.7}
 
         /* === SERVICES === */
-        .services { padding: 80px 0; }
-        .section-title { text-align: center; margin-bottom: 48px; }
-        .section-title h2 { font-size: 2.2rem; font-weight: 800; color: #111827; margin-bottom: 8px; }
-        .section-title p { color: #6B7280; font-size: 1.05rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card { background: white; padding: 32px 24px; border-radius: 16px; border: 1px solid #E5E7EB; transition: transform 0.2s, box-shadow 0.2s; }
-        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-        .service-card .icon { font-size: 2.5rem; margin-bottom: 16px; }
-        .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: #111827; }
-        .service-card p { color: #6B7280; font-size: 0.95rem; }
+        .services{background:#fff}
+        .services-header{text-align:center;margin-bottom:56px}
+        .services-header .section-desc{margin:8px auto 0}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .service-card{position:relative;padding:32px;border-radius:16px;border:1px solid #E5E7EB;transition:all .3s;overflow:hidden;background:#fff}
+        .service-card:hover{border-color:#1a56db;box-shadow:0 16px 40px rgba(26,86,219,.08);transform:translateY(-4px)}
+        .service-card .card-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+        .service-card .card-icon svg{width:24px;height:24px;color:#1a56db}
+        .service-card h3{font-size:1.1rem;font-weight:700;color:#0f172a;margin-bottom:8px}
+        .service-card p{color:#6B7280;font-size:.92rem;line-height:1.6}
+        .icon-blue{background:#EFF6FF}
+        .icon-purple{background:#F0EBFF}
+        .icon-green{background:#ECFDF5}
+        .icon-orange{background:#FFF7ED}
+        .icon-teal{background:#F0FDFA}
+        .icon-rose{background:#FFF1F2}
+
+        /* === SHOWCASE (Bilder) === */
+        .showcase{background:#F8FAFC}
+        .showcase-header{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+        .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .gallery-item{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+        .gallery-item:hover img{transform:scale(1.05)}
+        .gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 50%);display:flex;align-items:end;padding:20px;opacity:0;transition:opacity .3s}
+        .gallery-item:hover .overlay{opacity:1}
+        .gallery-item .overlay span{color:#fff;font-weight:600;font-size:.95rem}
+
+        /* === PROCESS === */
+        .process{background:#fff}
+        .process-header{text-align:center;margin-bottom:56px}
+        .process-header .section-desc{margin:8px auto 0}
+        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+        .steps::before{content:'';position:absolute;top:40px;left:12%;right:12%;height:2px;background:#E5E7EB;z-index:0}
+        .step{text-align:center;position:relative;z-index:1}
+        .step-num{width:80px;height:80px;border-radius:50%;background:#fff;border:3px solid #1a56db;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem;font-weight:900;color:#1a56db}
+        .step h4{font-size:1rem;font-weight:700;margin-bottom:6px;color:#0f172a}
+        .step p{font-size:.88rem;color:#6B7280;max-width:200px;margin:0 auto}
 
         /* === ABOUT === */
-        .about { padding: 80px 0; background: #F9FAFB; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-        .about-text h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; color: #2563EB; }
-        .about-text p { color: #4B5563; margin-bottom: 24px; }
-        .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .checklist li { color: #374151; font-size: 0.95rem; }
-        .checklist li::before { content: "✓ "; color: #10B981; font-weight: 700; }
-        .stats-card { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-        .stats-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; color: #111827; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .stat { text-align: center; }
-        .stat .number { font-size: 2rem; font-weight: 800; color: #2563EB; }
-        .stat .label { font-size: 0.85rem; color: #6B7280; margin-top: 4px; }
+        .about{background:#0a1628;color:#fff;position:relative;overflow:hidden}
+        .about-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(26,86,219,.15) 0%,transparent 60%)}
+        .about-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .about-images{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .about-img{border-radius:16px;overflow:hidden;aspect-ratio:3/4}
+        .about-img:first-child{transform:translateY(24px)}
+        .about-img img{width:100%;height:100%;object-fit:cover}
+        .about-content .section-title{color:#fff}
+        .about-content .section-desc{color:#94a3b8}
+        .features-list{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+        .feature{display:flex;align-items:start;gap:14px}
+        .feature-icon{width:40px;height:40px;border-radius:10px;background:rgba(26,86,219,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .feature-icon svg{width:18px;height:18px;color:#60a5fa}
+        .feature h4{font-size:.95rem;font-weight:700;margin-bottom:2px}
+        .feature p{font-size:.85rem;color:#94a3b8}
 
         /* === CONTACT === */
-        .contact { padding: 80px 0; }
-        .telegram-card { background: linear-gradient(135deg, #0088cc 0%, #005f8f 100%); padding: 48px 32px; border-radius: 20px; text-align: center; color: white; margin-bottom: 24px; }
-        .telegram-card .icon-lg { font-size: 3rem; margin-bottom: 16px; }
-        .telegram-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
-        .telegram-card p { opacity: 0.9; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
-        .telegram-card .cta-tg { display: inline-block; background: white; color: #0088cc; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.2s; }
-        .telegram-card .cta-tg:hover { transform: translateY(-2px); }
-        .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .contact-item { background: white; padding: 24px 16px; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); text-align: center; }
-        .contact-item .icon { font-size: 1.8rem; margin-bottom: 8px; }
-        .contact-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: #111827; }
-        .contact-item a { color: #2563EB; text-decoration: none; font-size: 0.9rem; }
-        .contact-item p { color: #6B7280; font-size: 0.9rem; }
+        .contact{background:#F8FAFC}
+        .contact-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;max-width:900px;margin:0 auto}
+        .tg-card{background:linear-gradient(135deg,#1a56db 0%,#0e3a8a 100%);padding:48px 40px;border-radius:20px;color:#fff}
+        .tg-card h3{font-size:1.5rem;font-weight:800;margin-bottom:8px}
+        .tg-card p{color:rgba(255,255,255,.8);margin-bottom:28px;line-height:1.7}
+        .tg-features{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+        .tg-feat{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.9)}
+        .tg-feat svg{width:18px;height:18px;color:#93c5fd;flex-shrink:0}
+        .info-cards{display:flex;flex-direction:column;gap:16px}
+        .info-card{background:#fff;padding:24px;border-radius:14px;border:1px solid #E5E7EB;display:flex;align-items:center;gap:16px;transition:border-color .2s}
+        .info-card:hover{border-color:#1a56db}
+        .info-card .ic-icon{width:44px;height:44px;border-radius:10px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .info-card .ic-icon svg{width:20px;height:20px;color:#1a56db}
+        .info-card h4{font-size:.92rem;font-weight:700;color:#0f172a}
+        .info-card p{font-size:.85rem;color:#6B7280}
+        .info-card a{color:#1a56db;text-decoration:none;font-size:.85rem;font-weight:500}
 
         /* === FOOTER === */
-        footer { background: #111827; color: #D1D5DB; padding: 48px 0 24px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        .footer-brand .name { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 12px; }
-        .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
-        .footer-contact h4 { color: white; font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
-        .footer-contact p { font-size: 0.9rem; margin-bottom: 6px; }
-        .footer-contact a { color: #60A5FA; text-decoration: none; }
-        .footer-bottom { text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid #1F2937; font-size: 0.85rem; color: #6B7280; }
+        footer{background:#0f172a;color:#94a3b8;padding:56px 0 24px}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+        .footer-brand .name{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:12px}
+        .footer-brand p{font-size:.88rem;line-height:1.7}
+        .footer-links h4{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:14px}
+        .footer-links ul{list-style:none}
+        .footer-links li{margin-bottom:8px}
+        .footer-links a{color:#94a3b8;text-decoration:none;font-size:.88rem;transition:color .2s}
+        .footer-links a:hover{color:#fff}
+        .footer-bottom{text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid #1E293B;font-size:.82rem;color:#475569}
 
-        /* === FLOATING TG BUTTON === */
-        .tg-float { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; background: #0088cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,136,204,0.4); z-index: 9999; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
-        .tg-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(0,136,204,0.5); }
+        /* === FLOAT TG === */
+        .tg-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#1a56db;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,86,219,.4);z-index:9999;transition:all .2s;text-decoration:none}
+        .tg-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(26,86,219,.5)}
 
         /* === RESPONSIVE === */
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:1024px){
+            .hero-grid{grid-template-columns:1fr;min-height:auto;padding:48px 0}
+            .hero-text{padding-right:0;text-align:center}
+            .hero-text p{margin:0 auto 32px}
+            .hero-buttons{justify-content:center}
+            .hero-stats{justify-content:center}
+            .hero-visual{display:none}
+            .hero-text h1{font-size:2.4rem}
+            .services-grid{grid-template-columns:repeat(2,1fr)}
+            .gallery{grid-template-columns:repeat(2,1fr)}
+            .steps{grid-template-columns:repeat(2,1fr)}
+            .steps::before{display:none}
+            .about-grid{grid-template-columns:1fr;gap:40px}
+            .about-images{display:none}
+            .contact-layout{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr;gap:32px}
         }
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            nav { display: none; }
-            .nav-cta { display: none; }
-            .hero { padding: 56px 0; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .services { padding: 56px 0; }
-            .section-title h2 { font-size: 1.7rem; }
-            .services-grid { grid-template-columns: 1fr; gap: 16px; }
-            .service-card { padding: 24px 20px; }
-            .about { padding: 56px 0; }
-            .about-grid { grid-template-columns: 1fr; gap: 32px; }
-            .contact { padding: 56px 0; }
-            .telegram-card { padding: 32px 20px; }
-            .telegram-card h3 { font-size: 1.3rem; }
-            .contact-grid { grid-template-columns: 1fr; gap: 12px; }
-            .contact-item { padding: 20px 16px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+        @media(max-width:768px){
+            .hamburger{display:block}
+            nav,.nav-cta{display:none}
+            .section{padding:64px 0}
+            .section-title{font-size:1.8rem}
+            .hero-text h1{font-size:2rem}
+            .services-grid{grid-template-columns:1fr}
+            .gallery{grid-template-columns:1fr 1fr}
+            .steps{grid-template-columns:1fr 1fr}
+            .tg-card{padding:32px 24px}
+            .trust-inner{gap:24px}
         }
-        @media (max-width: 380px) {
-            .hero h1 { font-size: 1.7rem; }
-            .container { padding: 0 16px; }
-            .nav-container { height: 64px; }
-            .logo { font-size: 1.2rem; }
-            .logo img { height: 36px; }
+        @media(max-width:480px){
+            .hero-text h1{font-size:1.7rem}
+            .gallery{grid-template-columns:1fr}
+            .steps{grid-template-columns:1fr}
+            .hero-buttons{flex-direction:column;align-items:center}
+            .hero-stats{flex-direction:column;gap:16px;align-items:center}
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="Isapeli3D Logo">
-                Isapeli3D
-            </a>
+        <div class="container nav-wrap">
+            <a href="#" class="logo-link"><img src="logo.png" alt="Isapeli3D"></a>
             <nav>
                 <ul>
-                    <li><a href="#services" onclick="closeMobile()">Services</a></li>
-                    <li><a href="#about" onclick="closeMobile()">Über uns</a></li>
-                    <li><a href="#contact" onclick="closeMobile()">Kontakt</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#showcase">Galerie</a></li>
+                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="cta-button nav-cta">Angebot anfragen</a>
-            <button class="hamburger" onclick="toggleMobile()" aria-label="Menü">
-                <span></span><span></span><span></span>
-            </button>
+            <a href="#contact" class="btn btn-primary nav-cta">Angebot anfragen</a>
+            <button class="hamburger" onclick="toggleMobile()" aria-label="Menü"><span></span><span></span><span></span></button>
         </div>
         <div class="mobile-nav" id="mobileNav">
             <a href="#services" onclick="closeMobile()">Services</a>
+            <a href="#showcase" onclick="closeMobile()">Galerie</a>
             <a href="#about" onclick="closeMobile()">Über uns</a>
             <a href="#contact" onclick="closeMobile()">Kontakt</a>
-            <div class="cta-mobile">
-                <a href="https://t.me/Isapeli3D_bot" target="_blank" class="cta-button" style="display:block;">💬 Telegram</a>
-            </div>
+            <div class="mob-cta"><a href="https://t.me/Isapeli3D_bot" target="_blank" class="btn btn-primary" style="display:block;text-align:center">💬 Telegram</a></div>
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
+        <div class="hero-bg"></div>
         <div class="container">
-            <h1>Professioneller 3D-Druck für Ihre Visionen</h1>
-            <p>Hochpräzise Prototypen, individuelle Ersatzteile und kreative Designs mit modernster Technologie.</p>
-            <a href="#contact" class="cta-hero">Jetzt Projekt starten →</a>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Professioneller 3D-Druck</div>
+                    <h1>Ihre Vision.<br><span>In 3D gedruckt.</span></h1>
+                    <p>Maßanfertigungen, Prototypen und Serienproduktion — hochpräzise, schnell und lokal aus Troisdorf für Kunden in ganz Deutschland.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-white">Kostenloses Angebot →</a>
+                        <a href="#services" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff">Services entdecken</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat"><div class="num">500+</div><div class="label">Projekte</div></div>
+                        <div class="hero-stat"><div class="num">99.8%</div><div class="label">Erfolgsrate</div></div>
+                        <div class="hero-stat"><div class="num">24h</div><div class="label">Express möglich</div></div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1605650248703-1f83e535c674?w=600&q=80" alt="3D-Druck in Aktion">
+                        <div class="hero-img-badge"><div class="dot"></div><span style="font-size:.85rem;font-weight:600;color:#0f172a">Druck in Bearbeitung</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <!-- TRUST BAR -->
+    <section class="trust">
+        <div class="container trust-inner">
+            <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Kostenlose Beratung</div>
+            <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Express in 24h</div>
+            <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg> Versand deutschlandweit</div>
+            <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Zufriedenheitsgarantie</div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section services">
         <div class="container">
-            <div class="section-title">
-                <h2>Unsere Services</h2>
-                <p>Alles aus einer Hand — vom Design bis zum fertigen Produkt</p>
+            <div class="services-header">
+                <div class="section-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> SERVICES</div>
+                <h2 class="section-title">Alles aus einer Hand</h2>
+                <p class="section-desc">Vom ersten Entwurf bis zum fertigen Produkt — wir begleiten Sie durch den gesamten Prozess.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="icon">🎨</div>
-                    <h3>3D-Modellierung & Design</h3>
-                    <p>Professionelle CAD-Modellierung für Ihre individuellen Designs.</p>
+                    <div class="card-icon icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                    <h3>3D-Modellierung</h3>
+                    <p>Professionelle CAD-Konstruktion und Design-Service für individuelle Projekte.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🖨️</div>
+                    <div class="card-icon icon-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01M6 12h.01M18 12h.01"/></svg></div>
                     <h3>FDM 3D-Druck</h3>
-                    <p>Hochwertige Drucke mit PLA, PETG, ABS und speziellen Filamenten.</p>
+                    <p>Hochwertige Drucke mit PLA, PETG, ABS, TPU und weiteren Filamenten.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🔬</div>
-                    <h3>SLA/DLP Resin-Druck</h3>
-                    <p>Hochauflösende Drucke für detailreiche Modelle und Miniaturen.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon">⚡</div>
+                    <div class="card-icon icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
                     <h3>Prototyping</h3>
-                    <p>Schnelle Iterationen und funktionale Prototypen.</p>
+                    <p>Schnelle Iterationen und funktionale Prototypen für Ihre Entwicklung.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">📦</div>
+                    <div class="card-icon icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
                     <h3>Kleinserien</h3>
-                    <p>Effiziente Produktion von Kleinserien für Markteinführungen.</p>
+                    <p>Effiziente Serienproduktion ab 10 Stück mit Mengenrabatten bis 25%.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🔧</div>
-                    <h3>Ersatzteilfertigung</h3>
-                    <p>Individuelle Ersatzteile für Haushalt und Industrie.</p>
+                    <div class="card-icon icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+                    <h3>Ersatzteile</h3>
+                    <p>Individuelle Ersatzteile für Haushalt, Industrie und Vintage-Reparaturen.</p>
+                </div>
+                <div class="service-card">
+                    <div class="card-icon icon-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+                    <h3>Deko & Geschenke</h3>
+                    <p>Personalisierte Dekorationen, Figuren und einzigartige Geschenkideen.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section showcase">
         <div class="container">
-            <div class="section-title">
-                <h2>Warum Isapeli3D?</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>Erfahrung trifft Technologie</h3>
-                    <p>Wir kombinieren jahrelange Erfahrung in 3D-Druck mit modernster Technologie und Leidenschaft für Präzision.</p>
-                    <ul class="checklist">
-                        <li>Hochpräzise Drucke bis zu 0.05mm</li>
-                        <li>Breite Materialauswahl</li>
-                        <li>Schnelle Lieferzeiten</li>
-                        <li>Individuelle Beratung</li>
-                    </ul>
+            <div class="showcase-header">
+                <div>
+                    <div class="section-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> GALERIE</div>
+                    <h2 class="section-title">Unsere Arbeiten</h2>
+                    <p class="section-desc">Ein Auszug aus über 500 erfolgreich umgesetzten Projekten.</p>
                 </div>
-                <div class="stats-card">
-                    <h3>Unsere Stärken</h3>
-                    <div class="stats-grid">
-                        <div class="stat">
-                            <div class="number">99.8%</div>
-                            <div class="label">Druckerfolgsrate</div>
+                <a href="https://t.me/Isapeli3D_bot" target="_blank" class="btn btn-outline">Alle ansehen →</a>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80" alt="3D-gedrucktes Bauteil"><div class="overlay"><span>⚙️ Präzisionsbauteil</span></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1628348070889-cb656235b4eb?w=500&q=80" alt="3D-Druck Prototyp"><div class="overlay"><span>📐 Architekturmodell</span></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?w=500&q=80" alt="3D-gedruckte Deko"><div class="overlay"><span>🎨 Dekorationsfigur</span></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=500&q=80" alt="Mechanisches Teil"><div class="overlay"><span>🔧 Funktionales Bauteil</span></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1530124566582-a45a7e3b4538?w=500&q=80" alt="3D-Druck Maschine"><div class="overlay"><span>🖨️ Serienproduktion</span></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605650248703-1f83e535c674?w=500&q=80" alt="3D-Druck Detail"><div class="overlay"><span>✨ Detailaufnahme</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process">
+        <div class="container">
+            <div class="process-header">
+                <div class="section-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> SO GEHT'S</div>
+                <h2 class="section-title">In 4 Schritten zum Ergebnis</h2>
+                <p class="section-desc">Einfacher geht nicht — senden Sie uns Ihre Datei und wir kümmern uns um den Rest.</p>
+            </div>
+            <div class="steps">
+                <div class="step"><div class="step-num">1</div><h4>Datei senden</h4><p>STL, STEP oder OBJ direkt per Telegram oder E-Mail</p></div>
+                <div class="step"><div class="step-num">2</div><h4>Angebot erhalten</h4><p>Festes Angebot innerhalb von 24 Stunden</p></div>
+                <div class="step"><div class="step-num">3</div><h4>Druck & Qualität</h4><p>Professioneller Druck mit Qualitätskontrolle</p></div>
+                <div class="step"><div class="step-num">4</div><h4>Lieferung</h4><p>Versand oder Abholung in Troisdorf</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+        <div class="about-bg"></div>
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <div class="about-img"><img src="https://images.unsplash.com/photo-1530124566582-a45a7e3b4538?w=400&q=80" alt="3D-Drucker"></div>
+                    <div class="about-img"><img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?w=400&q=80" alt="3D-Druck Ergebnis"></div>
+                </div>
+                <div class="about-content">
+                    <div class="section-label">ÜBER UNS</div>
+                    <h2 class="section-title">Warum Isapeli3D?</h2>
+                    <p class="section-desc">Wir kombinieren Erfahrung in 3D-Druck mit modernster Technologie und einer Leidenschaft für Präzision.</p>
+                    <div class="features-list">
+                        <div class="feature">
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                            <div><h4>Präzision bis 0.05mm</h4><p>Höchste Detailgenauigkeit für anspruchsvolle Projekte</p></div>
                         </div>
-                        <div class="stat">
-                            <div class="number">24h</div>
-                            <div class="label">Express-Lieferung</div>
+                        <div class="feature">
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
+                            <div><h4>220×220×250mm</h4><p>Großes Druckvolumen für ambitiousierte Projekte</p></div>
                         </div>
-                        <div class="stat">
-                            <div class="number">50+</div>
-                            <div class="label">Materialien</div>
+                        <div class="feature">
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                            <div><h4>Schnell & Zuverlässig</h4><p>Express-Option in 24h, Standard in 1-3 Werktagen</p></div>
                         </div>
-                        <div class="stat">
-                            <div class="number">500+</div>
-                            <div class="label">Projekte</div>
+                        <div class="feature">
+                            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+                            <div><h4>Persönliche Beratung</h4><p>Individuelle Unterstützung von der Idee bis zur Lieferung</p></div>
                         </div>
                     </div>
                 </div>
@@ -252,37 +380,44 @@
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Kontaktieren Sie uns</h2>
+            <div style="text-align:center;margin-bottom:48px">
+                <div class="section-label" style="justify-content:center">KONTAKT</div>
+                <h2 class="section-title">Lassen Sie uns starten</h2>
             </div>
-            <div class="telegram-card">
-                <div class="icon-lg">🤖</div>
-                <h3>Schnellster Weg: Telegram</h3>
-                <p>Schreib uns direkt über unseren Telegram Bot — Dateien senden, Preise erfahren, Aufträge tracken.</p>
-                <a href="https://t.me/Isapeli3D_bot" target="_blank" class="cta-tg">💬 Jetzt auf Telegram schreiben</a>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="icon">📧</div>
-                    <h4>E-Mail</h4>
-                    <a href="mailto:info@isapeli3d.com">info@isapeli3d.com</a>
+            <div class="contact-layout">
+                <div class="tg-card">
+                    <h3>💬 Schnellster Weg: Telegram</h3>
+                    <p>Schreiben Sie uns direkt — senden Sie Dateien, erhalten Sie Preise und tracken Sie Ihren Auftrag in Echtzeit.</p>
+                    <div class="tg-features">
+                        <div class="tg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/></svg> Dateien direkt senden</div>
+                        <div class="tg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/></svg> Angebot in 24h</div>
+                        <div class="tg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/></svg> Auftragstracking</div>
+                        <div class="tg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/></svg> Persönlicher Support</div>
+                    </div>
+                    <a href="https://t.me/Isapeli3D_bot" target="_blank" class="btn btn-white" style="display:flex;justify-content:center;width:100%">Jetzt auf Telegram schreiben →</a>
                 </div>
-                <div class="contact-item">
-                    <div class="icon">📍</div>
-                    <h4>Standort</h4>
-                    <p>Troisdorf, NRW</p>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">🕐</div>
-                    <h4>Erreichbarkeit</h4>
-                    <p>Mo–Fr 9–18h · Sa 10–14h</p>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                        <div><h4>E-Mail</h4><a href="mailto:info@isapeli3d.com">info@isapeli3d.com</a></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div><h4>Standort</h4><p>Troisdorf, NRW, Deutschland</p></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                        <div><h4>Erreichbarkeit</h4><p>Mo–Fr 9–18 Uhr · Sa 10–14 Uhr</p></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -290,11 +425,22 @@
                     <div class="name">Isapeli3D</div>
                     <p>Professioneller 3D-Druck Service mit Fokus auf Qualität und Präzision. Lokal aus Troisdorf für Kunden in ganz Deutschland.</p>
                 </div>
-                <div class="footer-contact">
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#showcase">Galerie</a></li>
+                        <li><a href="#about">Über uns</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
                     <h4>Kontakt</h4>
-                    <p>💬 <a href="https://t.me/Isapeli3D_bot" target="_blank">@Isapeli3D_bot</a></p>
-                    <p>📧 info@isapeli3d.com</p>
-                    <p>📍 Troisdorf, NRW</p>
+                    <ul>
+                        <li><a href="https://t.me/Isapeli3D_bot" target="_blank">💬 @Isapeli3D_bot</a></li>
+                        <li><a href="mailto:info@isapeli3d.com">📧 info@isapeli3d.com</a></li>
+                        <li><a>📍 Troisdorf, NRW</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">© 2026 Isapeli3D. Alle Rechte vorbehalten.</div>
@@ -306,12 +452,8 @@
     </a>
 
     <script>
-        function toggleMobile() {
-            document.getElementById('mobileNav').classList.toggle('active');
-        }
-        function closeMobile() {
-            document.getElementById('mobileNav').classList.remove('active');
-        }
+        function toggleMobile(){document.getElementById('mobileNav').classList.toggle('active')}
+        function closeMobile(){document.getElementById('mobileNav').classList.remove('active')}
     </script>
 </body>
 </html>
