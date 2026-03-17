@@ -1,0 +1,4 @@
+baseURL = 'https://isapeli3d.de/'
+languageCode = 'de-de'
+title = 'Isapeli3D - 3D-Druck Deko & Spielzeug'
+theme = "ananke"
