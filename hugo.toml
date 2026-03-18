@@ -1,4 +1,36 @@
-baseURL = 'https://isapeli3d.de/'
+baseURL = 'http://localhost:1313/'
 languageCode = 'de-de'
 title = 'Isapeli3D - 3D-Druck Deko & Spielzeug'
 theme = "ananke"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Shop"
+    url = "/shop/"
+    weight = 2
+  [[menu.main]]
+    name = "Galerie"
+    url = "/galerie/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Maßanfertigung"
+    url = "/massanfertigung/"
+    weight = 5
+
+  [[menu.main]]
+    name = "Über uns"
+    url = "/ueber-uns/"
+    weight = 7
+  [[menu.main]]
+    name = "Kontakt"
+    url = "/kontakt/"
+    weight = 8
+  [[menu.main]]
+    name = "Impressum"
+    url = "/impressum/"
+    weight = 9
